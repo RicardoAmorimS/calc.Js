@@ -111,7 +111,8 @@
   }
   
   .error {
-    background-color: var(--error-color);
+    border-color: #ff0043;
+    transition: 0.5 linear all;
   }
   
   .success {

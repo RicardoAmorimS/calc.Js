@@ -7,8 +7,14 @@ const resultCalc = document.getElementById('result');
 //forEach - para cada tecla selecionada (key) é adicionado um evento (addEventListener) quando for clicada
 document.querySelectorAll('.charKey').forEach((key) => {
     key.addEventListener('click', () => {
-        //utilizando o dataset.value para buscar o valor atribuido ao botão com 'data-value' 
-        input.value += key.dataset.value;
+        if (input.classList.value === 'error') {
+            input.classList.remove('error');
+            input.value = key.dataset.value;
+        } else {
+            //utilizando o dataset.value para buscar o valor atribuido ao botão com 'data-value' 
+            input.value += key.dataset.value;
+        }
+
     })
 });
 
@@ -27,8 +33,10 @@ const allowedKeys = ["(", ")", ".", "+", "-", "*", "%", "1", "2", "3", "4", "5",
 //Atribuindo um função a ser chamada quando uma tecla do teclado físico for pressinado
 document.addEventListener('keydown', (ev) => {
     ev.preventDefault();
-    //verificando se a tecla pressionada (ev.key) está incluida dentro do array 'alowedKeys'
-    if (allowedKeys.includes(ev.key)) {
+    if (input.classList.value === 'error' && allowedKeys.includes(ev.key)) {
+        input.classList.remove('error');
+        input.value = ev.key;
+    } else if (allowedKeys.includes(ev.key)) {
         //adicionado a tecla pressionada no input
         input.value += ev.key;
         return
@@ -44,8 +52,20 @@ document.addEventListener('keydown', (ev) => {
 
 //calculando a expressão
 function calculate() {
+    if (input.value !== '') {
+        try {
+            resultCalc.value = eval(input.value);
+        } catch (error) {
+            input.classList.add('error');
+            input.value = "ERROR";
+        }
+    } else {
+        input.focus();
+    }
+
     //a função eval permite que a expressão passada como parametro seja executada como código java script
-    resultCalc.value = eval(input.value);
+
+
 }
 
 //adicionando a função de mudar o tema quando o botão switch theme for clicado
