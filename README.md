@@ -3,7 +3,7 @@ Criando uma calculadora utilizando java script
 
 1. Instalação
 
-Para instalar basta utilizar o git clone e excutar o arquivo index.html.
+  Para instalar o projeto, basta baixa-lo no repositorio local e exercutar o index.html.
 
 2. Sobre o projeto
 
