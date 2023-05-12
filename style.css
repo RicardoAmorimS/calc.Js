@@ -118,7 +118,7 @@
   .success {
     border-color: var(--primary-color) !important;
     color: var(--primary-color) !important;
-    transition: 1s linear all;
+    transition:  linear all;
   }
 
   
